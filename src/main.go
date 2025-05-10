@@ -30,6 +30,11 @@ func main() {
 		if err != nil {
 			utils.PrintErrorMessage(err.Error())
 		}
+	case "--get-key":
+		err := githubSshManager.GetKey(profileName)
+		if err != nil {
+			utils.PrintErrorMessage(err.Error())
+		}
 	case "--new":
 		err := githubSshManager.New(profileName)
 		if err != nil {

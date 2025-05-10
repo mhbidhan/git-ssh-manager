@@ -17,6 +17,10 @@ func (app UnixInterfacePlatform) Status() error {
 	return github_ssh_manager.Status(app.FilePaths)
 }
 
+func (app UnixInterfacePlatform) GetKey(profileName string) error {
+	return github_ssh_manager.GetKey(app.FilePaths, profileName)
+}
+
 func (app UnixInterfacePlatform) New(profileName string) error {
 	return github_ssh_manager.New(app.FilePaths, profileName)
 }

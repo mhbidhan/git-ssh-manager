@@ -6,6 +6,7 @@ type GithubSshManager interface {
 	GetFilePaths() models_file_paths.FilePaths
 
 	Status() error
+	GetKey(profileName string) error
 	New(profileName string) error
 	Use(profileName string) error
 	Remove(profileName string) error
