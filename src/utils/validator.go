@@ -12,6 +12,7 @@ func ValidateInput(githubSshManager interfaces.GithubSshManager) (string, string
 	if len(os.Args) < 2 {
 		PrintErrorMessage("Argument is required")
 		PrintAllCommands()
+
 		return "", "", errors.New("An error occured")
 	}
 
@@ -22,17 +23,11 @@ func ValidateInput(githubSshManager interfaces.GithubSshManager) (string, string
 	}
 
 	if constants.AppFlags[flag] == "--help" {
-		PrintAllCommands()
-		return "", "", errors.New("An error occured")
-	}
-
-	if constants.AppFlags[flag] == "--status" || constants.AppFlags[flag] == "--help" {
-		return "", "", errors.New("An error occured")
+		return flag, "", nil
 	}
 
 	if _, valid := constants.AppFlags[flag]; !valid {
 		PrintErrorMessage("Invalid argument")
-
 		PrintAllCommands()
 
 		return "", "", errors.New("Invalid argument")

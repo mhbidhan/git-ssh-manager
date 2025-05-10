@@ -50,6 +50,11 @@ func main() {
 		if err != nil {
 			utils.PrintErrorMessage(err.Error())
 		}
+	case "--help":
+		utils.PrintAllCommands()
+	default:
+		utils.PrintErrorMessage("Invalid command")
+		utils.PrintAllCommands()
 	}
 
 }
