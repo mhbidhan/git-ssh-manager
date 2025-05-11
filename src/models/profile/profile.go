@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/mhbidhan/github-ssh-manager/src/utils"
+	"github.com/mhbidhan/git-ssh-manager/src/utils"
 )
 
 type Profile struct {

@@ -3,7 +3,7 @@ package utils
 import (
 	"os"
 
-	"github.com/mhbidhan/github-ssh-manager/src/interfaces"
+	"github.com/mhbidhan/git-ssh-manager/src/interfaces"
 )
 
 func Bootstrap(githubSshManager interfaces.GithubSshManager) {

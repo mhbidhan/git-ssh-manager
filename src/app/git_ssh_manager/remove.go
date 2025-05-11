@@ -1,4 +1,4 @@
-package github_ssh_manager
+package git_ssh_manager
 
 import (
 	"encoding/json"
@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 
 	"github.com/bobg/go-generics/slices"
-	models_file_paths "github.com/mhbidhan/github-ssh-manager/src/models/file_paths"
-	models_profile "github.com/mhbidhan/github-ssh-manager/src/models/profile"
-	"github.com/mhbidhan/github-ssh-manager/src/utils"
+	models_file_paths "github.com/mhbidhan/git-ssh-manager/src/models/file_paths"
+	models_profile "github.com/mhbidhan/git-ssh-manager/src/models/profile"
+	"github.com/mhbidhan/git-ssh-manager/src/utils"
 )
 
 func Remove(filePaths models_file_paths.FilePaths, profileName string) error {

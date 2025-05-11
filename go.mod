@@ -1,4 +1,4 @@
-module github.com/mhbidhan/github-ssh-manager
+module github.com/mhbidhan/git-ssh-manager
 
 go 1.24.2
 

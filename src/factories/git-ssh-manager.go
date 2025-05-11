@@ -4,9 +4,9 @@ import (
 	"errors"
 	"os"
 
-	app "github.com/mhbidhan/github-ssh-manager/src/app/platforms"
-	"github.com/mhbidhan/github-ssh-manager/src/interfaces"
-	models_file_paths "github.com/mhbidhan/github-ssh-manager/src/models/file_paths"
+	app "github.com/mhbidhan/git-ssh-manager/src/app/platforms"
+	"github.com/mhbidhan/git-ssh-manager/src/interfaces"
+	models_file_paths "github.com/mhbidhan/git-ssh-manager/src/models/file_paths"
 )
 
 func CreateGithubSshManager(platform string) (interfaces.GithubSshManager, error) {
@@ -20,7 +20,7 @@ func CreateGithubSshManager(platform string) (interfaces.GithubSshManager, error
 	switch platform {
 	case "linux":
 		return app.UnixInterfacePlatform{
-			FilePaths: models_file_paths.GenerateFilePaths(homeDir, "/.config/github-ssh-manager"),
+			FilePaths: models_file_paths.GenerateFilePaths(homeDir, "/.config/git-ssh-manager"),
 		}, nil
 	default:
 		return nil, errors.New("Platform not supported")
