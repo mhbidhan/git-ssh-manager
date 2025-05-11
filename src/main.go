@@ -3,9 +3,9 @@ package main
 import (
 	"runtime"
 
-	"github.com/mhbidhan/github-ssh-manager/src/constants"
-	"github.com/mhbidhan/github-ssh-manager/src/factories"
-	"github.com/mhbidhan/github-ssh-manager/src/utils"
+	"github.com/mhbidhan/git-ssh-manager/src/constants"
+	"github.com/mhbidhan/git-ssh-manager/src/factories"
+	"github.com/mhbidhan/git-ssh-manager/src/utils"
 )
 
 func main() {

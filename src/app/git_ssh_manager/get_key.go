@@ -1,10 +1,10 @@
-package github_ssh_manager
+package git_ssh_manager
 
 import (
 	"path/filepath"
 
-	models_file_paths "github.com/mhbidhan/github-ssh-manager/src/models/file_paths"
-	"github.com/mhbidhan/github-ssh-manager/src/utils"
+	models_file_paths "github.com/mhbidhan/git-ssh-manager/src/models/file_paths"
+	"github.com/mhbidhan/git-ssh-manager/src/utils"
 )
 
 func GetKey(filePaths models_file_paths.FilePaths, profileName string) error {

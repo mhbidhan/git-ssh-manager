@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/mgutz/ansi"
-	"github.com/mhbidhan/github-ssh-manager/src/constants"
+	"github.com/mhbidhan/git-ssh-manager/src/constants"
 )
 
 

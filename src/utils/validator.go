@@ -4,8 +4,8 @@ import (
 	"errors"
 	"os"
 
-	"github.com/mhbidhan/github-ssh-manager/src/constants"
-	"github.com/mhbidhan/github-ssh-manager/src/interfaces"
+	"github.com/mhbidhan/git-ssh-manager/src/constants"
+	"github.com/mhbidhan/git-ssh-manager/src/interfaces"
 )
 
 func ValidateInput(githubSshManager interfaces.GithubSshManager) (string, string, error) {

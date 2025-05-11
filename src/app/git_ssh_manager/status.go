@@ -1,11 +1,11 @@
-package github_ssh_manager
+package git_ssh_manager
 
 import (
 	"fmt"
 
 	"github.com/mgutz/ansi"
-	models_file_paths "github.com/mhbidhan/github-ssh-manager/src/models/file_paths"
-	models_profile "github.com/mhbidhan/github-ssh-manager/src/models/profile"
+	models_file_paths "github.com/mhbidhan/git-ssh-manager/src/models/file_paths"
+	models_profile "github.com/mhbidhan/git-ssh-manager/src/models/profile"
 )
 
 func Status(filePaths models_file_paths.FilePaths) error {

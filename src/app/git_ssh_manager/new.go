@@ -1,13 +1,13 @@
-package github_ssh_manager
+package git_ssh_manager
 
 import (
 	"fmt"
 	"os/exec"
 	"path/filepath"
 
-	models_file_paths "github.com/mhbidhan/github-ssh-manager/src/models/file_paths"
-	models_profile "github.com/mhbidhan/github-ssh-manager/src/models/profile"
-	"github.com/mhbidhan/github-ssh-manager/src/utils"
+	models_file_paths "github.com/mhbidhan/git-ssh-manager/src/models/file_paths"
+	models_profile "github.com/mhbidhan/git-ssh-manager/src/models/profile"
+	"github.com/mhbidhan/git-ssh-manager/src/utils"
 )
 
 func New(filePaths models_file_paths.FilePaths, profileName string) error {
