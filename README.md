@@ -18,11 +18,11 @@
 
 ### Linux/MacOS
 
-> **Note:** `git-ssh-manager` requires [Go](https://golang.org/dl/) version **1.24.2** or higher if building from source.
-
 ---
 
 ### 🔧 Option 1: Build from Source
+
+> **Note:** `git-ssh-manager` requires [Go](https://golang.org/dl/) version **1.24.2** or higher if building from source.
 
 1. Clone the repository:
 
