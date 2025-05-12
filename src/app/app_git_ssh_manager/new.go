@@ -1,4 +1,4 @@
-package git_ssh_manager
+package app_git_ssh_manager
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 	"github.com/mhbidhan/git-ssh-manager/src/utils"
 )
 
-func New(filePaths models_file_paths.FilePaths, profileName string) error {
+func new(filePaths models_file_paths.FilePaths, profileName string) error {
 	fileManager := utils.FileManager{}
 
 	sshName := profileName + "_github"
