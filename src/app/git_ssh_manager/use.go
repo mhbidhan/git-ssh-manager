@@ -1,6 +1,7 @@
 package git_ssh_manager
 
 import (
+	"os"
 	"os/exec"
 	"path/filepath"
 
@@ -24,8 +25,8 @@ func Use(filePaths models_file_paths.FilePaths, profileName string) error {
 
 	osSSHDir := filepath.Join(filePaths.HomeDir, ".ssh")
 
-	exec.Command("rm", filepath.Join(osSSHDir, "id_rsa")).Run()
-	exec.Command("rm", filepath.Join(osSSHDir, "id_rsa.pub")).Run()
+	os.Remove(filepath.Join(osSSHDir, "id_rsa"))
+	os.Remove(filepath.Join(osSSHDir, "id_rsa.pub"))
 
 	exec.Command("git", "config", "--global", "user.name", profileToBeActive.Username).Run()
 	exec.Command("git", "config", "--global", "user.email", profileToBeActive.Email).Run()
@@ -33,17 +34,23 @@ func Use(filePaths models_file_paths.FilePaths, profileName string) error {
 	privateKey := filepath.Join(filePaths.SSHDirPath, profileToBeActive.SSHDirPath, profileToBeActive.SSHDirPath)
 	publicKey := filepath.Join(filePaths.SSHDirPath, profileToBeActive.SSHDirPath, profileToBeActive.SSHDirPath+".pub")
 
-	exec.Command("cp", privateKey, osSSHDir).Run()
-	exec.Command("cp", publicKey, osSSHDir).Run()
+	fileManager.CopyFileToDirectory(publicKey, osSSHDir)
+	fileManager.CopyFileToDirectory(privateKey, osSSHDir)
 
 	privateKey = filepath.Join(osSSHDir, profileToBeActive.SSHDirPath)
 	publicKey = filepath.Join(osSSHDir, profileToBeActive.SSHDirPath+".pub")
 
-	exec.Command("mv", privateKey, filepath.Join(osSSHDir, "id_rsa")).Run()
-	exec.Command("mv", publicKey, filepath.Join(osSSHDir, "id_rsa.pub")).Run()
+	err = fileManager.RenameFile(publicKey, "id_rsa.pub")
 
-	exec.Command("rm", privateKey).Run()
-	exec.Command("rm", publicKey).Run()
+	if err != nil {
+		return err
+	}
+
+	err = fileManager.RenameFile(privateKey, "id_rsa")
+
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

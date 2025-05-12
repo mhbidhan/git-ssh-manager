@@ -3,7 +3,7 @@ package git_ssh_manager
 import (
 	"encoding/json"
 	"errors"
-	"os/exec"
+	"os"
 	"path/filepath"
 
 	"github.com/bobg/go-generics/slices"
@@ -49,7 +49,7 @@ func Remove(filePaths models_file_paths.FilePaths, profileName string) error {
 
 	dir := filepath.Join(filePaths.SSHDirPath, sshProfileDirPath)
 
-	exec.Command("rm", "-rf", dir).Run()
+	os.Remove(dir)
 
 	return nil
 }
