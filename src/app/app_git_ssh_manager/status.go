@@ -1,4 +1,4 @@
-package git_ssh_manager
+package app_git_ssh_manager
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	models_profile "github.com/mhbidhan/git-ssh-manager/src/models/profile"
 )
 
-func Status(filePaths models_file_paths.FilePaths) error {
+func status(filePaths models_file_paths.FilePaths) error {
 	profiles, err := models_profile.GetProfiles(filePaths.ProfileFilePath)
 	activeProfile, err := models_profile.GetActiveProfile(filePaths.ActiveProfileFilePath, profiles)
 

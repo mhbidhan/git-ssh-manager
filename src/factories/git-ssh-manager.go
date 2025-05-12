@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/mhbidhan/git-ssh-manager/src/app/platforms"
+	"github.com/mhbidhan/git-ssh-manager/src/app/app_git_ssh_manager"
 	"github.com/mhbidhan/git-ssh-manager/src/interfaces"
 	models_file_paths "github.com/mhbidhan/git-ssh-manager/src/models/file_paths"
 )
@@ -20,15 +20,15 @@ func CreateGithubSshManager(platform string) (interfaces.GithubSshManager, error
 
 	switch platform {
 	case "linux":
-		return platforms.UnixInterfacePlatform{
+		return app_git_ssh_manager.GitSSHManager{
 			FilePaths: models_file_paths.GenerateFilePaths(homeDir, filepath.Join(".config", "git-ssh-manager")),
 		}, nil
 	case "darwin":
-		return platforms.UnixInterfacePlatform{
+		return app_git_ssh_manager.GitSSHManager{
 			FilePaths: models_file_paths.GenerateFilePaths(homeDir, filepath.Join(".config", "git-ssh-manager")),
 		}, nil
 	case "windows":
-		return platforms.MSDOSInterfacePlatform{
+		return app_git_ssh_manager.GitSSHManager{
 			FilePaths: models_file_paths.GenerateFilePaths(homeDir, filepath.Join("AppData", "Local")),
 		}, nil
 	default:

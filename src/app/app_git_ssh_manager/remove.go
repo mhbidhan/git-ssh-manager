@@ -1,4 +1,4 @@
-package git_ssh_manager
+package app_git_ssh_manager
 
 import (
 	"encoding/json"
@@ -12,7 +12,7 @@ import (
 	"github.com/mhbidhan/git-ssh-manager/src/utils"
 )
 
-func Remove(filePaths models_file_paths.FilePaths, profileName string) error {
+func remove(filePaths models_file_paths.FilePaths, profileName string) error {
 	fileManager := utils.FileManager{}
 
 	profiles, _ := models_profile.GetProfiles(filePaths.ProfileFilePath)

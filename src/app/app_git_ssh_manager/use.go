@@ -1,4 +1,4 @@
-package git_ssh_manager
+package app_git_ssh_manager
 
 import (
 	"os"
@@ -10,7 +10,7 @@ import (
 	"github.com/mhbidhan/git-ssh-manager/src/utils"
 )
 
-func Use(filePaths models_file_paths.FilePaths, profileName string) error {
+func use(filePaths models_file_paths.FilePaths, profileName string) error {
 	fileManager := utils.FileManager{}
 
 	profiles, err := models_profile.GetProfiles(filePaths.ProfileFilePath)
