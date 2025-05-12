@@ -29,7 +29,7 @@ func CreateGithubSshManager(platform string) (interfaces.GithubSshManager, error
 		}, nil
 	case "windows":
 		return app_git_ssh_manager.GitSSHManager{
-			FilePaths: models_file_paths.GenerateFilePaths(homeDir, filepath.Join("AppData", "Local")),
+			FilePaths: models_file_paths.GenerateFilePaths(homeDir, filepath.Join("AppData", "Local", "git-ssh-manager")),
 		}, nil
 	default:
 		return nil, errors.New("Platform not supported")
