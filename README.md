@@ -13,53 +13,123 @@
 
 - ✅ Linux
 - ✅ macOS
+- ✅ Windows
 
 ## Installation
 
-### Linux/MacOS
+<details>
+  <summary><strong>Linux/MacOS</strong></summary>
 
----
+  <h3>🔧 Option 1: Build from Source</h3>
 
-### 🔧 Option 1: Build from Source
+  <blockquote>
+    <strong>Note:</strong> <code>git-ssh-manager</code> requires <a href="https://golang.org/dl/">Go</a> version <strong>1.24.2</strong> or higher if building from source.
+  </blockquote>
 
-> **Note:** `git-ssh-manager` requires [Go](https://golang.org/dl/) version **1.24.2** or higher if building from source.
+  <ol>
+    <li>
+      Clone the repository:
+      <pre><code class="language-bash">
+$ git clone https://github.com/mhbidhan/git-ssh-manager.git
+$ cd git-ssh-manager
+      </code></pre>
+    </li>
+    <li>
+      Build and install:
+      <pre><code class="language-bash">
+make install
+      </code></pre>
+    </li>
+  </ol>
 
-1. Clone the repository:
+  <hr>
 
-   ```bash
-   $ git clone https://github.com/mhbidhan/git-ssh-manager.git
-   $ cd git-ssh-manager
-   ```
+  <h3>📦 Option 2: Install Precompiled Binary</h3>
 
-2. Build and install:
-   ```bash
-   make install
-   ```
+  <ol>
+    <li>
+      Download the latest precompiled binary:
+      👉 <a href="https://drive.google.com/file/d/1EpqmhFrwvAN2t9yYrs9zcYqf0Ntc202e/view?usp=sharing">Download from Google Drive</a>
+    </li>
+    <li>
+      Unzip the archive (this shows the file structure):
+      <pre><code class="language-text">
+files
+├── gsm
+└── install.sh
+      </code></pre>
+    </li>
+    <li>
+      Run the install script:
+      <pre><code class="language-bash">
+$ chmod +x install.sh
+$ ./install.sh
+      </code></pre>
+    </li>
+  </ol>
 
----
+  <hr>
 
-### 📦 Option 2: Install Precompiled Binary
+</details>
 
-1. Download the latest precompiled binary:
+<details>
+  <summary><strong>Windows</strong></summary>
 
-   👉 [Download from Google Drive](https://drive.google.com/file/d/1nLueHClz0-1YVyYJvc0-Y3trZWBHKsfM/view?usp=drive_link)
+  <h3>🔧 Option 1: Build from Source</h3>
 
-2. Unzip the archive:
+  <blockquote>
+    <strong>Note:</strong> <code>git-ssh-manager</code> requires <a href="https://golang.org/dl/">Go</a> version <strong>1.24.2</strong> or higher if building from source.
+  </blockquote>
 
-   ```text
-   /files
-   ├── gsm
-   └── install.sh
-   ```
+  <ol>
+    <li>
+      Clone the repository:
+      <pre><code class="language-bash">
+$ git clone https://github.com/mhbidhan/git-ssh-manager.git
+$ cd git-ssh-manager
+      </code></pre>
+    </li>
+    <li>
+      Build and install:
+      <pre><code class="language-text">
+git-ssh-manager
+└── src
+    └── build_utils
+        └── install.bat
+      </code></pre>
+    </li>
+    <li>
+      Run the install.bat as an Administrator
+    </li>
 
-3. Run the install script:
+  </ol>
 
-   ```bash
-   $ chmod +x install.sh
-   $ ./install.sh
-   ```
+  <hr>
 
----
+  <h3>📦 Option 2: Install Precompiled Binary</h3>
+
+  <ol>
+    <li>
+      Download the latest precompiled binary:
+      👉 <a href="https://drive.google.com/file/d/1MzJ0bo6e5iuVJ52Y4BZhyorFSA32dczC/view?usp=sharing">Download from Google Drive</a>
+    </li>
+    <li>
+      Unzip the archive (this shows the file structure):
+      <pre><code class="language-text">
+/files
+├── gsm
+└── install.bat
+└── update_path.bat
+      </code></pre>
+    </li>
+    <li>
+      Run the install.bat as an Administrator
+    </li>
+  </ol>
+
+  <hr>
+
+</details>
 
 ### ✅ Verify Installation
 
