@@ -2,6 +2,12 @@
 
 **Git SSH Manager** is a simple command-line utility that helps you manage multiple Git SSH profiles with ease. It allows you to create, switch, and remove SSH keys and Git global user configurations (username and email) using straightforward commands.
 
+<blockquote>
+
+The Story Behind `git-ssh-manager` [**My Journey Building My First CLI Tool**](https://medium.com/@mhbidhan/my-journey-building-my-first-cli-tool-0b37b2b8ef8c)
+
+</blockquote>
+
 ## Features
 
 - Quickly generate new SSH keys and Git profiles
