@@ -3,7 +3,9 @@ package models_profile
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 
+	"github.com/mgutz/ansi"
 	"github.com/mhbidhan/git-ssh-manager/src/utils"
 )
 
@@ -12,6 +14,16 @@ type Profile struct {
 	Email       string `json:"email"`
 	Username    string `json:"username"`
 	SSHDirPath  string `json:"sshKeyPath"`
+}
+
+func (profile Profile) PrintProfileInfo() {
+	fmt.Print(ansi.ColorCode("green+h:black"), "\n"+profile.ProfileName, ansi.ColorCode("reset"))
+
+	fmt.Printf(`
+------------------------
+Username: %s
+Email: %s
+`, profile.Username, profile.Email)
 }
 
 func CreateProfile(profileName string, username string, email string, sshKeyPath string, profileFilePath string) (Profile, error) {

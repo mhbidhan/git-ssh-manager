@@ -18,6 +18,10 @@ func ValidateInput(githubSshManager interfaces.GithubSshManager) (string, string
 
 	flag := os.Args[1]
 
+	if constants.AppFlags[flag] == "--list" {
+		return flag, "", nil
+	}
+
 	if constants.AppFlags[flag] == "--status" {
 		return flag, "", nil
 	}

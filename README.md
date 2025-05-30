@@ -139,6 +139,10 @@ git-ssh-manager
 
 ### ✅ Verify Installation
 
+<blockquote>
+  <strong>Note:</strong> If the program doesn't produce expected results, manually add <code>C:\Program Files\GitSSHManager</code> to your Windows environment paths. Windows sometimes fails to update this automatically.
+</blockquote>
+
 After installation, check that it works:
 
 ```bash
@@ -149,7 +153,8 @@ Expected output:
 
 ```text
 -gk, --get-key          prints the public key
--s, --status            show active profile
+-l, --list              outputs a list of all available profiles
+-s, --status            outputs the active profile
 -n, --new               create new profile
 -u, --use               use to profile
 -r, --remove            remove profile
@@ -172,6 +177,7 @@ Below are the supported commands:
 | Command            | Description                                          |
 | ------------------ | ---------------------------------------------------- |
 | `-gk`, `--get-key` | Prints the public key of the current profile.        |
+| `-l`, `--list`     | Displays a list of all available profiles.           |
 | `-s`, `--status`   | Displays the currently active profile.               |
 | `-n`, `--new`      | Creates a new profile.                               |
 | `-u`, `--use`      | Switches to the specified profile.                   |
