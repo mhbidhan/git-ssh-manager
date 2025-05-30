@@ -16,6 +16,10 @@ func (app GitSSHManager) Status() error {
 	return status(app.FilePaths)
 }
 
+func (app GitSSHManager) List() error {
+	return list(app.FilePaths)
+}
+
 func (app GitSSHManager) GetKey(profileName string) error {
 	return getKey(app.FilePaths, profileName)
 }

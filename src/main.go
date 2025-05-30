@@ -25,6 +25,11 @@ func main() {
 	}
 
 	switch constants.AppFlags[flag] {
+	case "--list":
+		err := githubSshManager.List()
+		if err != nil {
+			utils.PrintErrorMessage(err.Error())
+		}
 	case "--status":
 		err := githubSshManager.Status()
 		if err != nil {
