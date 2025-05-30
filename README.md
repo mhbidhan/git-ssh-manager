@@ -55,7 +55,7 @@ make install
   <ol>
     <li>
       Download the latest precompiled binary:
-      👉 <a href="https://drive.google.com/file/d/1EpqmhFrwvAN2t9yYrs9zcYqf0Ntc202e/view?usp=sharing">Download from Google Drive</a>
+      👉 <a href="https://drive.google.com/drive/folders/16Y5vDB5KJk1wbbk4NLPM6jUgYaYO2woH?usp=sharing">Download from Google Drive</a>
     </li>
     <li>
       Unzip the archive (this shows the file structure):
@@ -117,7 +117,7 @@ git-ssh-manager
   <ol>
     <li>
       Download the latest precompiled binary:
-      👉 <a href="https://drive.google.com/file/d/1MzJ0bo6e5iuVJ52Y4BZhyorFSA32dczC/view?usp=sharing">Download from Google Drive</a>
+      👉 <a href="https://drive.google.com/drive/folders/1eYxDfsi55_bHe_qOLiARfiMi8_n1-dvW?usp=sharing">Download from Google Drive</a>
     </li>
     <li>
       Unzip the archive (this shows the file structure):
@@ -140,7 +140,7 @@ git-ssh-manager
 ### ✅ Verify Installation
 
 <blockquote>
-  <strong>Note:</strong> If the program doesn't produce expected results, manually add <code>C:\Program Files\GitSSHManager</code> to your Windows environment paths. Windows sometimes fails to update this automatically.
+  <strong>Note:</strong> The program might not work on Windows correctly. If it doesn't produce expected results, manually add <code>C:\Program Files\GitSSHManager</code> to your Windows environment paths. Windows sometimes fails to update this automatically.
 </blockquote>
 
 After installation, check that it works:
