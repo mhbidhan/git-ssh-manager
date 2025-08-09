@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ ! "$OSTYPE" =~ ^linux ]]; then
+    echo "❌ This script only supports Linux."
+    exit 1
+fi
+
 go build -o bin/gsm ./src
 echo "✅ Build"
 
