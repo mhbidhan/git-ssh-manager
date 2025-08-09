@@ -45,5 +45,4 @@ func ValidateInput(githubSshManager interfaces.GithubSshManager) (string, string
 	profileName := os.Args[2]
 
 	return flag, profileName, nil
-
 }

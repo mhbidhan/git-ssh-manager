@@ -4,8 +4,8 @@ build:
 
 install: build
 	@echo "📦 Installing gsm to ~/bin..."
-	sudo cp bin/gsm ~/.local/share/bin
-	rm -rf ./bin
+	cp bin/gsm ~/.local/bin/
+	chmod +x ~/.local/bin/gsm
 	@echo "✅ Installation complete"
 
 export_zip: build
