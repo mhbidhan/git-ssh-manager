@@ -4,8 +4,7 @@ build:
 
 install: build
 	@echo "📦 Installing gsm to ~/bin..."
-	cp bin/gsm ~/.local/bin/
-	chmod +x ~/.local/bin/gsm
+	./src/build_utils/unix/install.sh
 	@echo "✅ Installation complete"
 
 export_zip: build
