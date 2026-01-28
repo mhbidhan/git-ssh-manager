@@ -57,6 +57,11 @@ func main() {
 		}
 	case "--help":
 		utils.PrintAllCommands()
+	case "--bind-profile":
+		err := githubSshManager.BindProfile(profileName)
+		if err != nil {
+			utils.PrintErrorMessage(err.Error())
+		}
 	default:
 		utils.PrintErrorMessage("Invalid command")
 		utils.PrintAllCommands()

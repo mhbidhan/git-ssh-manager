@@ -11,4 +11,5 @@ type GithubSshManager interface {
 	New(profileName string) error
 	Use(profileName string) error
 	Remove(profileName string) error
+	BindProfile(profileName string) error
 }
