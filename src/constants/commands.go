@@ -8,5 +8,5 @@ const Commands = `
 -u, --use		use to profile
 -r, --remove		remove profile
 -h, --help		list all commands
-
+-bp, --bind-profile bind profile to current folder
 `
