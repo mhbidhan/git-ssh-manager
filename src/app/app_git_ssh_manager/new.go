@@ -39,6 +39,10 @@ func new(filePaths models_file_paths.FilePaths, profileName string) error {
 		return errEmailInput
 	}
 
+	if err := utils.ValidateEmail(profileEmialInput); err != nil {
+		return err
+	}
+
 	profile, err := models_profile.CreateProfile(profileName, profileNameInput, profileEmialInput, sshName, filePaths.ProfileFilePath)
 	if err != nil {
 		return err
