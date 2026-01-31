@@ -15,4 +15,6 @@ var AppFlags = map[string]string{
 	"--remove":  "--remove",
 	"-h":        "--help",
 	"--help":    "--help",
+	"-bp":       "--bind-profile",
+	"--bind-profile": "--bind-profile",
 }

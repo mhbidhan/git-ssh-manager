@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/mgutz/ansi"
 	"github.com/mhbidhan/git-ssh-manager/src/utils"
@@ -23,7 +24,7 @@ func (profile Profile) PrintProfileInfo() {
 ------------------------
 Username: %s
 Email: %s
-`, profile.Username, profile.Email)
+`, strings.Trim(profile.Username, "\n"), strings.Trim(profile.Email, "\n"))
 }
 
 func CreateProfile(profileName string, username string, email string, sshKeyPath string, profileFilePath string) (Profile, error) {

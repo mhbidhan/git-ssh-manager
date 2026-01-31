@@ -1,7 +1,9 @@
 package app_git_ssh_manager
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"os/exec"
 	"path/filepath"
 
@@ -15,23 +17,36 @@ func new(filePaths models_file_paths.FilePaths, profileName string) error {
 
 	sshName := profileName + "_github"
 
-	profile, err := models_profile.CreateProfile(profileName, "", "", sshName, filePaths.ProfileFilePath)
-
-	if err != nil {
-		return err
-	}
-
 	existingProfiles, err := models_profile.GetProfiles(filePaths.ProfileFilePath)
 
 	if err != nil {
 		return err
 	}
 
+	inStream := bufio.NewReader(os.Stdin)
+
+	var profileEmialInput string
+
 	fmt.Print("Username: ")
-	fmt.Scanln(&profile.Username)
+	profileNameInput, errNameInput := inStream.ReadString('\n')
+	if errNameInput != nil {
+		return errNameInput
+	}
 
 	fmt.Print("Email: ")
-	fmt.Scanln(&profile.Email)
+	profileEmialInput, errEmailInput := inStream.ReadString('\n')
+	if errEmailInput != nil {
+		return errEmailInput
+	}
+
+	if err := utils.ValidateEmail(profileEmialInput); err != nil {
+		return err
+	}
+
+	profile, err := models_profile.CreateProfile(profileName, profileNameInput, profileEmialInput, sshName, filePaths.ProfileFilePath)
+	if err != nil {
+		return err
+	}
 
 	profiles := make([]models_profile.Profile, 0)
 	if len(existingProfiles) <= 0 {

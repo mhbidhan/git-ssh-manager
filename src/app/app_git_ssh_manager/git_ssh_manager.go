@@ -35,3 +35,7 @@ func (app GitSSHManager) Use(profileName string) error {
 func (app GitSSHManager) Remove(profileName string) error {
 	return remove(app.FilePaths, profileName)
 }
+
+func (app GitSSHManager) BindProfile(profileName string) error {
+	return bindProfile(app.FilePaths, profileName)
+}
