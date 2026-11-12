@@ -23,7 +23,7 @@ func (*FileManager) WriteFile(path string, content any) error {
 		return fmt.Errorf("failed to marshal content: %w", err)
 	}
 
-	if err := os.WriteFile(path, data, 0644); err != nil {
+	if err := os.WriteFile(path, data, 0600); err != nil {
 		return fmt.Errorf("failed to write file %s: %w", path, err)
 	}
 
@@ -61,7 +61,7 @@ func (*FileManager) CopyFileToDirectory(srcFile, destinationDirectory string) er
 	}
 	defer source.Close()
 
-	destination, err := os.Create(destinationFile)
+	destination, err := os.OpenFile(destinationFile, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0600)
 	if err != nil {
 		return fmt.Errorf("failed to create destination file %s: %w", destinationFile, err)
 	}

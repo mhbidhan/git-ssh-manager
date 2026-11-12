@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/mail"
 	"os"
+	"regexp"
 	"strings"
 
 	"github.com/mhbidhan/git-ssh-manager/internal/constants"
@@ -37,6 +38,22 @@ func ValidateInput() (string, string, error) {
 	}
 
 	return flag, os.Args[2], nil
+}
+
+// ValidateProfileName checks that a profile name is safe to use in paths.
+func ValidateProfileName(name string) error {
+	name = strings.TrimSpace(name)
+	if name == "" {
+		return errors.New("profile name cannot be empty")
+	}
+	if strings.ContainsAny(name, "/\\\\") || strings.Contains(name, "..") {
+		return errors.New("profile name contains invalid path characters")
+	}
+	matched, _ := regexp.MatchString(`^[A-Za-z0-9][A-Za-z0-9._-]*$`, name)
+	if !matched {
+		return errors.New("profile name must start with a letter or digit and contain only letters, digits, dots, underscores, or hyphens")
+	}
+	return nil
 }
 
 // ValidateEmail checks if the provided string is a valid email address.
