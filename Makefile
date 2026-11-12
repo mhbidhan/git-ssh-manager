@@ -1,19 +1,28 @@
+BINARY := gsm
+BUILD_DIR := bin
+
 build:
-	go build -o bin/gsm ./src
-	@echo "✅ Built binary moved to ./bin/gsm"
+	go build -o $(BUILD_DIR)/$(BINARY) ./cmd
+	@echo "✅ Built binary at ./$(BUILD_DIR)/$(BINARY)"
 
 install: build
-	@echo "📦 Installing gsm to ~/bin..."
-	./src/build_utils/unix/install.sh
+	@echo "📦 Installing $(BINARY) to ~/bin..."
+	mkdir -p ~/bin
+	cp $(BUILD_DIR)/$(BINARY) ~/bin/$(BINARY)
 	@echo "✅ Installation complete"
+
+clean:
+	rm -rf $(BUILD_DIR) ./$(BINARY) ./gsm.zip
+	@echo "🧹 Cleaned build artifacts"
 
 export_zip: build
 	@echo "Exporting zip file..."
-	cp bin/gsm ./
-	cp ./src/build_utils/unix/install.sh ./
-	zip -r gsm.zip ./gsm ./install.sh
+	cp $(BUILD_DIR)/$(BINARY) ./$(BINARY)
+	zip -r gsm.zip ./$(BINARY)
 	cp ./gsm.zip ../
-	rm -rf ./bin
-	rm -rf ./gsm
-	rm -rf ./install.sh
-	@echo "✅ Installation complete"
+	rm -f ./$(BINARY) ./gsm.zip
+	@echo "✅ Export complete"
+
+# Run using project root (bin/..) as a temporary config location for testing
+test-run: build
+	GSM_HOME="$(CURDIR)" ./$(BUILD_DIR)/$(BINARY) $(ARGS)
