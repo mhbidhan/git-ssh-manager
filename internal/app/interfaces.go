@@ -13,4 +13,5 @@ type GitHubSSHManager interface {
 	Use(profileName string) error
 	Remove(profileName string) error
 	BindProfile(profileName string) error
+	LinkGPG(profileName string, gpgKeyID string) error
 }

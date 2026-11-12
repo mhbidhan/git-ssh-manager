@@ -9,4 +9,5 @@ const Commands = `
 -r, --remove		remove profile
 -h, --help		list all commands
 -bp, --bind-profile	bind profile to current folder
+-lg, --link-gpg	link an existing GPG key to a profile
 `

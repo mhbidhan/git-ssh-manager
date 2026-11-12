@@ -13,6 +13,9 @@ import (
 
 func main() {
 	homeDir := utils.GetHomeDir()
+	if override := os.Getenv("GSM_HOME"); override != "" {
+		homeDir = override
+	}
 	rootDir, err := utils.GetRootDir(runtime.GOOS)
 	if err != nil {
 		utils.PrintErrorMessage(err.Error())
@@ -77,6 +80,14 @@ func main() {
 		utils.PrintAllCommands()
 	case "--bind-profile":
 		if err := githubSshManager.BindProfile(profileName); err != nil {
+			utils.PrintErrorMessage(err.Error())
+		}
+	case "--link-gpg":
+		gpgKeyID := ""
+		if len(os.Args) >= 4 {
+			gpgKeyID = os.Args[3]
+		}
+		if err := githubSshManager.LinkGPG(profileName, gpgKeyID); err != nil {
 			utils.PrintErrorMessage(err.Error())
 		}
 	default:

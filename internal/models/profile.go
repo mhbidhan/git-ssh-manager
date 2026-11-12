@@ -14,6 +14,8 @@ type Profile struct {
 	Email       string `json:"email"`
 	Username    string `json:"username"`
 	SSHDirPath  string `json:"sshDirPath"`
+	// GPG key associated with the profile (key id / fingerprint).
+	GPGKeyID string `json:"gpgKeyID"`
 }
 
 // PrintProfileInfo prints profile information to stdout.
@@ -28,24 +30,46 @@ Email: %s
 }
 
 // CreateProfile creates a new profile after validating it doesn't already exist.
-func CreateProfile(profileName string, username string, email string, sshDirPath string, profileFilePath string) (Profile, error) {
-	existingProfiles, err := GetProfiles(profileFilePath)
-	if err != nil {
-		return Profile{}, fmt.Errorf("failed to get existing profiles: %w", err)
-	}
+// Additional trailing string arguments may carry the profile file path and/or a
+// GPG key id (in any order) for backwards/forwards compatibility.
+func CreateProfile(profileName string, username string, email string, sshDirPath string, extra ...string) (Profile, error) {
+	profileFilePath := ""
+	gpgKeyID := ""
 
-	for _, p := range existingProfiles {
-		if p.ProfileName == profileName {
-			return Profile{}, errors.New("profile already exists")
+	for _, s := range extra {
+		trimmed := strings.TrimSpace(s)
+		if trimmed == "" {
+			continue
+		}
+		if strings.HasSuffix(trimmed, ".json") || strings.Contains(trimmed, "profiles") {
+			profileFilePath = trimmed
+		} else {
+			// Treat as GPG key id/fingerprint when not a path.
+			if gpgKeyID == "" {
+				gpgKeyID = trimmed
+			}
 		}
 	}
 
-	return Profile{
+	if profileFilePath != "" {
+		existingProfiles, err := GetProfiles(profileFilePath)
+		if err == nil {
+			for _, p := range existingProfiles {
+				if p.ProfileName == profileName {
+					return Profile{}, errors.New("profile already exists")
+				}
+			}
+		}
+	}
+
+	prof := Profile{
 		ProfileName: profileName,
 		Username:    username,
 		Email:       email,
 		SSHDirPath:  sshDirPath,
-	}, nil
+		GPGKeyID: gpgKeyID,
+	}
+	return prof, nil
 }
 
 // GetProfiles reads and parses profiles from the given file path.

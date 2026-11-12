@@ -17,4 +17,6 @@ var AppFlags = map[string]string{
 	"--help":         "--help",
 	"-bp":            "--bind-profile",
 	"--bind-profile": "--bind-profile",
+	"-lg":            "--link-gpg",
+	"--link-gpg":     "--link-gpg",
 }

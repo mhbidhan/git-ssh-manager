@@ -52,3 +52,8 @@ func (app GitSSHManager) Remove(profileName string) error {
 func (app GitSSHManager) BindProfile(profileName string) error {
 	return bindProfile(app.FilePaths(), profileName)
 }
+
+// LinkGPG links an existing GPG key to the specified profile.
+func (app GitSSHManager) LinkGPG(profileName string, gpgKeyID string) error {
+	return linkGPGProfile(app.FilePaths(), profileName, gpgKeyID)
+}
