@@ -6,12 +6,16 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 
 	"github.com/mhbidhan/git-ssh-manager/internal/models"
 	"github.com/mhbidhan/git-ssh-manager/internal/utils"
 )
 
 func useProfile(filePaths models.AppData, profileName string) error {
+	if err := utils.ValidateProfileName(profileName); err != nil {
+		return err
+	}
 	fileManager := utils.NewFileManager()
 
 	profiles, err := models.GetProfiles(filePaths.ProfileFilePath)
@@ -30,6 +34,7 @@ func useProfile(filePaths models.AppData, profileName string) error {
 
 	osSSHDir := filepath.Join(filePaths.HomeDir, ".ssh")
 
+	_ = os.MkdirAll(osSSHDir, 0700)
 	_ = os.Remove(filepath.Join(osSSHDir, "id_rsa"))
 	_ = os.Remove(filepath.Join(osSSHDir, "id_rsa.pub"))
 
@@ -39,6 +44,21 @@ func useProfile(filePaths models.AppData, profileName string) error {
 
 	if err := exec.CommandContext(context.Background(), "git", "config", "--global", "user.email", prof.Email).Run(); err != nil {
 		return fmt.Errorf("failed to set git user.email: %w", err)
+	}
+
+	gpgKeyID := prof.GPGKeyID
+	if gpgKeyID != "" {
+		if err := exec.CommandContext(context.Background(), "git", "config", "--global", "user.signingkey", gpgKeyID).Run(); err != nil {
+			return fmt.Errorf("failed to set git user.signingkey: %w", err)
+		}
+		status, _ := checkGPGKey(gpgKeyID)
+		if strings.HasPrefix(status, "valid") {
+			_ = exec.CommandContext(context.Background(), "git", "config", "--global", "commit.gpgsign", "true").Run()
+		} else {
+			_ = exec.CommandContext(context.Background(), "git", "config", "--global", "commit.gpgsign", "false").Run()
+		}
+	} else {
+		_ = exec.CommandContext(context.Background(), "git", "config", "--global", "--unset", "commit.gpgsign").Run()
 	}
 
 	privateKey := filepath.Join(filePaths.SSHDirPath, prof.SSHDirPath, prof.SSHDirPath)

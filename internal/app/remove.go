@@ -1,11 +1,14 @@
 package app
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
+	"strings"
 
 	"github.com/bobg/go-generics/slices"
 	"github.com/mhbidhan/git-ssh-manager/internal/models"
@@ -13,6 +16,9 @@ import (
 )
 
 func removeProfile(filePaths models.AppData, profileName string) error {
+	if err := utils.ValidateProfileName(profileName); err != nil {
+		return err
+	}
 	fileManager := utils.NewFileManager()
 
 	profiles, err := models.GetProfiles(filePaths.ProfileFilePath)
@@ -54,6 +60,11 @@ func removeProfile(filePaths models.AppData, profileName string) error {
 	dir := filepath.Join(filePaths.SSHDirPath, sshProfileDirPath)
 
 	_ = os.RemoveAll(dir)
+
+	gpgKeyID := prof.GPGKeyID
+	if strings.TrimSpace(gpgKeyID) != "" {
+		_ = exec.CommandContext(context.Background(), "gpg", "--batch", "--yes", "--delete-secret-and-public-key", strings.TrimSpace(gpgKeyID)).Run()
+	}
 
 	return nil
 }
